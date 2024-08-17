@@ -6,7 +6,6 @@
 #include <unistd.h>
 
 #define DEFAULT_NRO "sdmc:/switch/.overlays/ovlmenu.ovl"
-static const u64 DEFAULT_APPLET_HEAP_SIZE = 0x800000;
 
 const char g_noticeText[] =
     "nx-ovlloader " VERSION "\0"
@@ -36,10 +35,13 @@ Result g_lastRet = 0;
 
 extern void* __stack_top; // Defined in libnx.
 #define STACK_SIZE 0x10000 // Change this if main-thread stack size ever changes.
+#define INNER_HEAP_SIZE 0x4000
+#define DEFAULT_APPLET_HEAP_SIZE 0x800000
+
 
 void __libnx_initheap(void)
 {
-    static char g_innerheap[0x4000];
+    static char g_innerheap[INNER_HEAP_SIZE];
 
     extern char* fake_heap_start;
     extern char* fake_heap_end;
