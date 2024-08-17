@@ -6,6 +6,7 @@
 #include <unistd.h>
 
 #define DEFAULT_NRO "sdmc:/switch/.overlays/ovlmenu.ovl"
+static const u64 DEFAULT_APPLET_HEAP_SIZE = 0x800000;
 
 const char g_noticeText[] =
     "nx-ovlloader " VERSION "\0"
@@ -61,7 +62,7 @@ void __appInit(void)
         rc = setsysGetFirmwareVersion(&fw);
         if (R_SUCCEEDED(rc))
             hosversionSet(MAKEHOSVERSION(fw.major, fw.minor, fw.micro));
-        g_appletHeapSize = 0x800000;
+        g_appletHeapSize = DEFAULT_APPLET_HEAP_SIZE;
         g_appletHeapReservationSize = 0x00;
         setsysExit();
     }
