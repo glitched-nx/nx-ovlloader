@@ -9,4 +9,4 @@ When being run, this service automatically tries to chainload `/switch/.overlays
 
 
 # Notice:
-While it is not my intention to replace `nx-ovlloader`, I do want Ultrahand users to have an updated version that includes extra memory if they choose to utilize it for wallpapers. 
+While it is not my intention to replace `nx-ovlloader`, I do want Ultrahand users to have an updated version that includes extra memory if they choose to utilize it. 
