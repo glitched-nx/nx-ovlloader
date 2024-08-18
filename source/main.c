@@ -8,7 +8,7 @@
 #define DEFAULT_NRO "sdmc:/switch/.overlays/ovlmenu.ovl"
 
 const char g_noticeText[] =
-    "nx-ovlloader " VERSION "\0"
+    "nx-ovlloader+ " VERSION "\0"
     "What's the most resilient parasite? A bacteria? A virus? An intestinal worm? An idea. Resilient, highly contagious.";
 
 static char g_argv[2048];
