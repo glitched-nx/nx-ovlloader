@@ -9,4 +9,4 @@ When being run, this service automatically tries to chainload `/switch/.overlays
 
 
 # Sidenote
-While it is not my intention to replace `nx-ovlloader`, I do want Ultrahand users to have an updated version that includes extra memory if they choose to utilize it. 
+**nx-ovlloader+** consumes more of the available system memory than the base loader. That could impact your system depending on how much memory your setup currently consumes.
