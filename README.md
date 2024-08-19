@@ -7,6 +7,4 @@ When being run, this service automatically tries to chainload `/switch/.overlays
 # nx-ovlloader+
 (Built with expanded memory for Overlay power users)
 
-
-# Sidenote
 **nx-ovlloader+** consumes more of the available system memory than the base loader. That could impact your system depending on how much memory your setup currently consumes.
