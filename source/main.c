@@ -8,7 +8,7 @@
 #define DEFAULT_NRO "sdmc:/switch/.overlays/ovlmenu.ovl"
 
 const char g_noticeText[] =
-    "nx-ovlloader+ " VERSION "\0"
+    "nx-ovlloader " VERSION "\0"
     "What's the most resilient parasite? A bacteria? A virus? An intestinal worm? An idea. Resilient, highly contagious.";
 
 static char g_argv[2048];
@@ -36,7 +36,7 @@ Result g_lastRet = 0;
 extern void* __stack_top; // Defined in libnx.
 #define STACK_SIZE 0x10000 // Change this if main-thread stack size ever changes.
 #define INNER_HEAP_SIZE 0x4000
-#define DEFAULT_APPLET_HEAP_SIZE 0x800000
+#define DEFAULT_APPLET_HEAP_SIZE 0x600000
 
 
 void __libnx_initheap(void)
