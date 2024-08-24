@@ -8,7 +8,7 @@
 #define DEFAULT_NRO "sdmc:/switch/.overlays/ovlmenu.ovl"
 
 const char g_noticeText[] =
-    "nx-ovlloader " VERSION "\0"
+    "nx-ovlloader+ " VERSION "\0"
     "What's the most resilient parasite? A bacteria? A virus? An intestinal worm? An idea. Resilient, highly contagious.";
 
 static char g_argv[2048];
@@ -35,13 +35,10 @@ Result g_lastRet = 0;
 
 extern void* __stack_top; // Defined in libnx.
 #define STACK_SIZE 0x10000 // Change this if main-thread stack size ever changes.
-#define INNER_HEAP_SIZE 0x4000
-#define DEFAULT_APPLET_HEAP_SIZE 0x600000
-
 
 void __libnx_initheap(void)
 {
-    static char g_innerheap[INNER_HEAP_SIZE];
+    static char g_innerheap[0x4000];
 
     extern char* fake_heap_start;
     extern char* fake_heap_end;
@@ -64,7 +61,7 @@ void __appInit(void)
         rc = setsysGetFirmwareVersion(&fw);
         if (R_SUCCEEDED(rc))
             hosversionSet(MAKEHOSVERSION(fw.major, fw.minor, fw.micro));
-        g_appletHeapSize = DEFAULT_APPLET_HEAP_SIZE;
+        g_appletHeapSize = 0x800000;
         g_appletHeapReservationSize = 0x00;
         setsysExit();
     }
