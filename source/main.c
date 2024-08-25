@@ -8,7 +8,7 @@
 #define DEFAULT_NRO "sdmc:/switch/.overlays/ovlmenu.ovl"
 
 const char g_noticeText[] =
-    "nx-ovlloader " VERSION "\0"
+    "nx-ovlloader+ " VERSION "\0"
     "What's the most resilient parasite? A bacteria? A virus? An intestinal worm? An idea. Resilient, highly contagious.";
 
 static char g_argv[2048];
@@ -61,7 +61,7 @@ void __appInit(void)
         rc = setsysGetFirmwareVersion(&fw);
         if (R_SUCCEEDED(rc))
             hosversionSet(MAKEHOSVERSION(fw.major, fw.minor, fw.micro));
-        g_appletHeapSize = 0x600000;
+        g_appletHeapSize = 0x800000;
         g_appletHeapReservationSize = 0x00;
         setsysExit();
     }
@@ -338,7 +338,7 @@ void loadNro(void)
 
     memset(__stack_top - STACK_SIZE, 0, STACK_SIZE);
 
-    extern NORETURN void nroEntrypointTrampoline(u64 entries_ptr, u64 handle, u64 entrypoint);
+    extern NX_NORETURN void nroEntrypointTrampoline(u64 entries_ptr, u64 handle, u64 entrypoint);
     nroEntrypointTrampoline((u64) entries, -1, entrypoint);
 }
 
