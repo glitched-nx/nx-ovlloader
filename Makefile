@@ -37,7 +37,7 @@ include $(DEVKITPRO)/libnx/switch_rules
 #   of a homebrew executable (.nro). This is intended to be used for sysmodules.
 #   NACP building is skipped as well.
 #---------------------------------------------------------------------------------
-TARGET		:=	ovll
+TARGET		:=	$(notdir $(CURDIR))
 BUILD		:=	build
 SOURCES		:=	source
 DATA		:=	data
@@ -162,11 +162,23 @@ endif
 .PHONY: $(BUILD) clean all
 
 #---------------------------------------------------------------------------------
+# all: $(BUILD)
+#
+# $(BUILD):
+#	@[ -d $@ ] || mkdir -p $@
+#	@$(MAKE) --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
+#
+#---------------------------------------------------------------------------------
 all: $(BUILD)
 
 $(BUILD):
 	@[ -d $@ ] || mkdir -p $@
 	@$(MAKE) --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
+	@mkdir -p $(CURDIR)/temp/atmosphere/contents/420000000007E51A/flags
+	@touch $(CURDIR)/temp/atmosphere/contents/420000000007E51A/flags/boot2.flag
+	@cp $(TARGET).nsp $(CURDIR)/temp/atmosphere/contents/420000000007E51A/exefs.nsp
+	@cd $(CURDIR)/temp/ && zip -q -r $(CURDIR)/$(TARGET).zip . && cd $(CURDIR)
+	@rm -rf $(CURDIR)/temp
 
 #---------------------------------------------------------------------------------
 clean:
