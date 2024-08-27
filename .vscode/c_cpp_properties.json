@@ -11,6 +11,7 @@
             ],
             "defines": [
                 "SWITCH",
+                "DEFAULT_NRO",
                 "__SWITCH__",
                 "TESLA_INIT_IMPL"
             ],
