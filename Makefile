@@ -44,9 +44,9 @@ DATA		:=	data
 INCLUDES	:=	include
 APP_VERSION	:=	1.0.8
 
-ifeq ($(RELEASE),)
-	APP_VERSION	:=	$(APP_VERSION)-$(shell git describe --dirty --always)
-endif
+#ifeq ($(RELEASE),)
+#	APP_VERSION	:=	$(APP_VERSION)-$(shell git describe --dirty --always)
+#endif
 
 #---------------------------------------------------------------------------------
 # options for code generation
