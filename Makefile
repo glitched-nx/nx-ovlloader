@@ -180,6 +180,14 @@ $(BUILD):
 	@cd $(CURDIR)/temp/ && zip -q -r $(CURDIR)/$(TARGET).zip . && cd $(CURDIR)
 	@rm -rf $(CURDIR)/temp
 
+	@rm -rf out/
+	@mkdir -p out/atmosphere/contents/420000000007E51A/flags
+	@touch out/atmosphere/contents/420000000007E51A/flags/boot2.flag
+	@cp $(CURDIR)/toolbox.json out/atmosphere/contents/420000000007E51A/toolbox.json
+	@cp $(CURDIR)/$(TARGET).nsp out/atmosphere/contents/420000000007E51A/exefs.nsp
+
+
+
 #---------------------------------------------------------------------------------
 clean:
 	@echo clean ...
@@ -188,8 +196,15 @@ ifeq ($(strip $(APP_JSON)),)
 else
 	@rm -fr $(BUILD) $(TARGET).nsp $(TARGET).nso $(TARGET).npdm $(TARGET).elf
 endif
+	@rm -rf out/
+	@rm -f $(TARGET).zip
 
+#---------------------------------------------------------------------------------
+dist: all
+	@echo making dist ...
 
+	@rm -f $(TARGET).zip
+	@cd out; zip -r ../$(TARGET).zip ./*; cd ../
 #---------------------------------------------------------------------------------
 else
 .PHONY:	all
